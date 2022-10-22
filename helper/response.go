@@ -33,6 +33,19 @@ func AuthOK(data interface{}, token string) (int, interface{}) {
 		"token":   token,
 	}
 }
+func FailedBadRequestWithMSG(err string) (int, interface{}) {
+	return http.StatusOK, map[string]interface{}{
+		"message": err,
+		"code":    400,
+	}
+}
+func SuccessGetData(data interface{}) (int, interface{}) {
+	return http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    data,
+		"code":    200,
+	}
+}
 
 func FailedNotFound() (int, interface{}) {
 	return http.StatusNotFound, map[string]interface{}{

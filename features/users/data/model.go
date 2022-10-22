@@ -27,9 +27,14 @@ func (user User) ToCore() users.Core {
 		Name:     user.Name,
 		Email:    user.Email,
 		Password: user.Password,
-		// Role:     users.RoleCore(user.Role),
-		Role: users.RoleCore{ID: user.RoleID},
+		Role:     users.RoleCore{ID: user.RoleID},
 	}
-	// fmt.Println("ass", userCore)
 	return userCore
+}
+func toCoreList(art []User) []users.Core {
+	var coreList []users.Core
+	for _, val := range art {
+		coreList = append(coreList, val.ToCore())
+	}
+	return coreList
 }

@@ -33,3 +33,20 @@ func ToCore(userReq LoginResquest) users.Core {
 	}
 	return userCore
 }
+
+func FromCore(userCore users.Core) UserResponse {
+	userResponse := UserResponse{
+		Name:   userCore.Name,
+		Email:  userCore.Email,
+		RoleID: userCore.Role.ID,
+	}
+	return userResponse
+}
+
+func FromCoreList(data []users.Core) []UserResponse {
+	res := []UserResponse{}
+	for key := range data {
+		res = append(res, FromCore(data[key]))
+	}
+	return res
+}

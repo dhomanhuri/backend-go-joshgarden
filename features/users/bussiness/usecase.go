@@ -13,10 +13,6 @@ type UserRepo struct {
 	userData users.Data
 }
 
-// type authController struct {
-// 	userData users.Data
-// }
-
 func UserBussines(data users.Data) users.Bussines {
 	return &UserRepo{
 		userData: data,
@@ -52,4 +48,19 @@ func (repo *UserRepo) Register(data users.Core) error {
 		return result
 	}
 	return nil
+}
+
+func (repo *UserRepo) GetProfile(id int) (users.Core, error) {
+	userCore, nil := repo.userData.SelectUser(id)
+	return userCore, nil
+}
+
+func (repo *UserRepo) GetAll() ([]users.Core, error) {
+	result, err := repo.userData.SelectAll()
+	return result, err
+}
+
+func (repo *UserRepo) BussDell(id string) error {
+	err := repo.userData.DataDelete(id)
+	return err
 }

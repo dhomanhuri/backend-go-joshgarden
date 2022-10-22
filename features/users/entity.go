@@ -17,9 +17,15 @@ type Data interface {
 	InsertData(data Core) error
 	IsDuplicate(data Core) error
 	FindUser(Email string) (Core, error)
+	SelectUser(ID int) (Core, error)
+	SelectAll() ([]Core, error)
+	DataDelete(string) error
 }
 
 type Bussines interface {
 	Register(data Core) error
 	Login(data Core) (id int, token string, err error)
+	GetProfile(ID int) (Core, error)
+	GetAll() ([]Core, error)
+	BussDell(id string) error
 }

@@ -52,8 +52,38 @@ func (repo MysqlDB) FindUser(email string) (userCore users.Core, err error) {
 	if result.RowsAffected == 0 {
 		return userCore, errors.New("user not found")
 	}
+	userCore = userModel.ToCore()
+	return userCore, nil
+}
+
+func (repo MysqlDB) SelectUser(ID int) (userCore users.Core, err error) {
+	userModel := User{}
+
+	result := repo.DBConn.Where("id = ?", ID).Find(&userModel)
+	if result.RowsAffected == 0 {
+		return userCore, errors.New("user not found")
+	}
 
 	userCore = userModel.ToCore()
-	// fmt.Println("As ", userCore)
 	return userCore, nil
+}
+
+func (repo MysqlDB) SelectAll() ([]users.Core, error) {
+	var dataa []User
+	result := repo.DBConn.Find(&dataa)
+	if result.RowsAffected == 0 {
+		return nil, errors.New("failed get data")
+	}
+	return toCoreList(dataa), nil
+}
+func (repo MysqlDB) DataDelete(id string) (err error) {
+	datauser := User{}
+	result := repo.DBConn.Delete(&datauser, id)
+	if result.Error != nil {
+		return result.Error
+	}
+	if result.RowsAffected == 0 {
+		return errors.New("failed to delete data")
+	}
+	return nil
 }
