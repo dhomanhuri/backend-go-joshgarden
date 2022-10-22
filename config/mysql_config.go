@@ -20,7 +20,7 @@ func InitDB() *gorm.DB {
 	dbName := os.Getenv("DB_NAME")
 	dbHost := os.Getenv("DB_HOST")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local&sslmode=require", dbUser, dbPass, dbHost, dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbUser, dbPass, dbHost, dbName)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to create a connection a db")
