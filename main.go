@@ -11,6 +11,7 @@ import (
 	_usersData "backend-go/features/users/data"
 	_usersPres "backend-go/features/users/presentation"
 	"backend-go/migrations"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -38,6 +39,6 @@ func main() {
 	router.DELETE("/api/user", UserHandler.DellUser)
 	router.GET("/api/sensor", sensorHandler.GetLastData)
 	router.GET("/api/sensor/add", sensorHandler.InsertData)
-
-	router.Run(":3000")
+	port := os.Getenv("PORT")
+	router.Run(":", port)
 }
