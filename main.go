@@ -39,5 +39,5 @@ func main() {
 	router.GET("/api/sensor", sensorHandler.GetLastData)
 	router.GET("/api/sensor/add", sensorHandler.InsertData)
 	// port := os.Getenv("PORT")
-	router.Run(":8080")
+	router.Run()
 }
