@@ -1,1 +1,1 @@
-web: main
+web: backend-go

@@ -38,5 +38,6 @@ func main() {
 	router.DELETE("/api/user", UserHandler.DellUser)
 	router.GET("/api/sensor", sensorHandler.GetLastData)
 	router.GET("/api/sensor/add", sensorHandler.InsertData)
-	router.Run(":80")
+
+	router.Run(":8080")
 }
