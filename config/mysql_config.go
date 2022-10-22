@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 func InitDB() *gorm.DB {
-	// errEnv := godotenv.Load()
-	// if errEnv != nil {
-	// 	panic("failed connect db")
-	// }
+	errEnv := godotenv.Load()
+	if errEnv != nil {
+		panic("failed connect db")
+	}
 
 	dbUser := os.Getenv("DB_USER")
 	dbPass := os.Getenv("DB_PASS")
