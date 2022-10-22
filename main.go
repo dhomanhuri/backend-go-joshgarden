@@ -39,5 +39,5 @@ func main() {
 	router.GET("/api/sensor", sensorHandler.GetLastData)
 	router.GET("/api/sensor/add", sensorHandler.InsertData)
 
-	router.Run(":8000")
+	router.Run(":3000")
 }
