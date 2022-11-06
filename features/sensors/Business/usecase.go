@@ -24,3 +24,8 @@ func (repo *SensorRepo) BusGet() (sensors.Core, error) {
 	result, err := repo.sensorData.DataGet()
 	return result, err
 }
+
+func (repo *SensorRepo) BusGetList() ([]sensors.Core, error) {
+	result, err := repo.sensorData.DataGetList()
+	return result, err
+}

@@ -38,6 +38,7 @@ func main() {
 	router.DELETE("/api/user", UserHandler.DellUser)
 	router.GET("/api/sensor", sensorHandler.GetLastData)
 	router.GET("/api/sensor/add", sensorHandler.InsertData)
+	router.GET("/api/sensorlist", sensorHandler.GetListData)
 	// port := os.Getenv("PORT")
 	router.Run()
 }

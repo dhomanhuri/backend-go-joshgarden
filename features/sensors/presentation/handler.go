@@ -2,7 +2,9 @@ package presentation
 
 import (
 	"backend-go/features/sensors"
+	"backend-go/features/sensors/presentation/dto"
 	"backend-go/helper"
+	"backend-go/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -47,4 +49,18 @@ func (sb SensorBus) GetLastData(c *gin.Context) {
 		Water:      result.Water,
 	}
 	c.JSON(helper.SuccessGetData(fromCore))
+}
+
+func (sb SensorBus) GetListData(c *gin.Context) {
+	_, _, errJWT := middlewares.JWTTokenCheck(c)
+	if errJWT != nil {
+		c.JSON(helper.FailedBadRequestWithMSG("invalid or exp jwt"))
+		return
+	}
+	result, err := sb.Bus.BusGetList()
+	if err != nil {
+		c.JSON(helper.FailedBadRequestWithMSG("tidak ditemukan data / "))
+		return
+	}
+	c.JSON(helper.SuccessGetData(dto.FromCoreList(result)))
 }

@@ -43,3 +43,12 @@ func (repo *MysqlDB) DataGet() (sensorCore sensors.Core, err error) {
 	}
 	return sensorCore, nil
 }
+
+func (repo *MysqlDB) DataGetList() ([]sensors.Core, error) {
+	var data []Sensor
+	result := repo.DBConn.Find(&data)
+	if result.RowsAffected == 0 {
+		return nil, errors.New("get data failed")
+	}
+	return toCoreList(data), nil
+}
