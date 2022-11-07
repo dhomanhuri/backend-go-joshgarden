@@ -10,6 +10,7 @@ type UserResquest struct {
 }
 
 type UserResponse struct {
+	ID     int    `json:"id"`
 	Name   string `json:"name"`
 	Email  string `json:"email"`
 	RoleID int    `json:"role_id"`
@@ -36,6 +37,7 @@ func ToCore(userReq LoginResquest) users.Core {
 
 func FromCore(userCore users.Core) UserResponse {
 	userResponse := UserResponse{
+		ID:     int(userCore.UserID),
 		Name:   userCore.Name,
 		Email:  userCore.Email,
 		RoleID: userCore.Role.ID,

@@ -82,11 +82,11 @@ func (ub UserBuss) Profile(c *gin.Context) {
 }
 
 func (ub UserBuss) UserAll(c *gin.Context) {
-	_, _, errJWT := middlewares.JWTTokenCheck(c)
-	if errJWT != nil {
-		c.JSON(helper.FailedBadRequestWithMSG("invalid or exp jwt"))
-		return
-	}
+	// _, _, errJWT := middlewares.JWTTokenCheck(c)
+	// if errJWT != nil {
+	// 	c.JSON(helper.FailedBadRequestWithMSG("invalid or exp jwt"))
+	// 	return
+	// }
 	result, err := ub.Buss.GetAll()
 	if err != nil {
 		c.JSON(helper.FailedBadRequestWithMSG("tidak ditemukan data"))
