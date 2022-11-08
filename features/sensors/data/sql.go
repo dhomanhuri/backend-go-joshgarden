@@ -46,7 +46,7 @@ func (repo *MysqlDB) DataGet() (sensorCore sensors.Core, err error) {
 
 func (repo *MysqlDB) DataGetList() ([]sensors.Core, error) {
 	var data []Sensor
-	result := repo.DBConn.Order("id desc").Limit(24).Find(&data)
+	result := repo.DBConn.Order("id asc").Limit(24).Find(&data)
 	if result.RowsAffected == 0 {
 		return nil, errors.New("get data failed")
 	}

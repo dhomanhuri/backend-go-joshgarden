@@ -5,7 +5,6 @@ import (
 	"backend-go/features/users/presentation/dto"
 	"backend-go/helper"
 	"backend-go/middlewares"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -97,12 +96,12 @@ func (ub UserBuss) UserAll(c *gin.Context) {
 
 func (ub UserBuss) DellUser(c *gin.Context) {
 	id := c.Query("id")
-	fmt.Println(id)
-	_, _, errJWT := middlewares.JWTTokenCheck(c)
-	if errJWT != nil {
-		c.JSON(helper.FailedBadRequestWithMSG("invalid or exp jwt"))
-		return
-	}
+	// fmt.Println(id)
+	// _, _, errJWT := middlewares.JWTTokenCheck(c)
+	// if errJWT != nil {
+	// 	c.JSON(helper.FailedBadRequestWithMSG("invalid or exp jwt"))
+	// 	return
+	// }
 	err := ub.Buss.BussDell(id)
 	if err != nil {
 		c.JSON(helper.FailedBadRequestWithMSG("tidak ditemukan data"))
